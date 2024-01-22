@@ -1,0 +1,70 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top">
+						<div class="box1">
+							<h4>售后服务</h4>
+							<div>
+
+								<ul id="sidebar">
+
+
+									<li><a href=".">客户支持服务</a>
+									</li>
+
+									<li><a href=".">客户培训服务</a>
+									</li>
+
+
+								</ul>
+							</div>
+						</div> <ui:include src="contactUsBox.xhtml" /></td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»售后服务
+						</div>
+						<div class="main_content">
+							<table cellspacing="1" cellpadding="1" border="0" width="100%">
+								<tbody>
+									<tr>
+										<td height="100" valign="top"><img
+											src="images/kefuzhichi.jpg" alt="" />
+										</td>
+										<td height="100" width="5"></td>
+										<td valign="top"><strong>维护支持解决方案<br /> <br />
+										</strong>
+											<p style="line-height: 20px;">
+												包括技术支持、软件支持、服务器支持、安全防护等服务组合，旨在快速响应并解决软硬件故障，维护网站健康，保障网站运营，最终实现客户与我们的双赢。<strong>
+												</strong>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td height="100" width="113" valign="top"><img
+											src="images/zhichi4.jpg" alt="" />
+										</td>
+										<td height="100"></td>
+										<td valign="top"><strong>一对一维护支持解决方案<br /> </strong><br />
+											<p style="line-height: 20px;">我们可提供客户的维护支持一对一售后服务管理，从而快速高效的帮助客户解决建站时的所有问题，节省沟通时间。</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

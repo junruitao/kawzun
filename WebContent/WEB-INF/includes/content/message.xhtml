@@ -1,0 +1,105 @@
+<ice:panelGroup styleClass="box1" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tbody>
+			<tr>
+				<td align="left" width="210" valign="top">
+					<div class="box1">
+						<h4>在线留言</h4>
+						<div>
+
+
+							<ul id="sidebar">
+
+
+
+							</ul>
+						</div>
+					</div> <ui:include src="contactUsBox.xhtml" /></td>
+				<td align="left" valign="top">
+					<div class="location">
+						<a href="index.kwz">首页</a>»在线留言（<font color="#ff0000">演示页面，留言功能尚未开通</font>）
+					</div>
+					<div class="main_content">
+						<!-- liuyan start-->
+
+						<form onsubmit="return checkMe()" method="post"
+							action="message.kwz" name="guestbook">
+							<table cellspacing="1" cellpadding="1" border="0"
+								bgcolor="#cccccc" align="left" width="98%">
+								<tbody>
+									<tr bgcolor="#ff9d55">
+										<td height="24" bgcolor="#000000" colspan="2">
+											<table cellspacing="0" cellpadding="2" border="0"
+												width="100%">
+												<tbody>
+													<tr>
+														<td align="center" width="70%"><strong>
+																添加留言（<font color="#ff0000">演示页面，留言功能尚未开通</font>） </strong>
+														</td>
+													</tr>
+												</tbody>
+											</table></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">姓 名</td>
+										<td><input type="text" size="30" name="userName" /> <font
+											color="#ff0000">*必填</font></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">公 司</td>
+										<td><input type="text" size="30" name="l2" /></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">电 话</td>
+										<td><input type="text" size="30" name="l1" /></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">邮 箱</td>
+										<td><input type="text" size="30" name="email" /> <font
+											color="#ff0000">*必填</font></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">网 站</td>
+										<td><input type="text" size="30" name="homepage" /></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">主 题</td>
+										<td><input type="text" size="30" name="title" /> <font
+											color="#ff0000">*必填</font></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" width="84">留 言</td>
+										<td><textarea rows="10" cols="50" name="content"></textarea>
+											<font color="#ff0000">*必填</font></td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center">验证码</td>
+										<td>
+											<div align="left">
+												<input size="16" maxlength="20" name="verifycode2" />请输入<b><font
+													color="#007bcf">7378</font> </b>
+											</div>
+										</td>
+									</tr>
+									<tr bgcolor="#000000">
+										<td align="center" colspan="2"><input type="submit"
+											value="提交" name="Submit3" /> <input type="reset" value="重写"
+											name="Submit4" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+
+
+						<!-- 留言结束 -->
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+
+</ice:panelGroup>

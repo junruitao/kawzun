@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:faces="http://www.springframework.org/schema/xhtml"
+	xmlns:int-security="http://www.springframework.org/schema/integration/security"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/security http://www.springframework.org/schema/integration/security/spring-integration-security-2.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/xhtml http://www.springframework.org/schema/xhtml/spring-faces-2.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<sec:http auto-config="true" access-denied-page="/faces/accessDenied.xhtml">
+		<sec:form-login login-page="/faces/login.xhtml" />
+		<sec:intercept-url pattern="/faces/admin/**" access="ROLE_ADMIN" />
+	</sec:http>
+
+	<!-- business logic (method) security -->
+
+	<sec:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled">
+	</sec:global-method-security>
+
+	<!-- manager responsible for loading user account with assigned roles -->
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider
+			user-service-ref="userDetailsService">
+			<sec:password-encoder hash="sha-256">
+				<sec:salt-source user-property="salt" />
+			</sec:password-encoder>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>

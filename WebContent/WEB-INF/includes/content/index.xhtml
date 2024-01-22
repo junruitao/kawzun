@@ -1,0 +1,229 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+		<div class="div2">
+			<h2>推荐产品</h2>
+			<div class="show_content">
+				<table class="tuijian_pro" width="100%" border="0" cellpadding="0"
+					cellspacing="0">
+
+					<tbody>
+						<tr>
+
+							<ui:repeat value="#{productList.popularProducts}" var="product">
+
+								<td height="110" bgcolor="#eaeaea" align="center"
+									valign="middle"></td>
+
+
+								<td align="center">
+									<table width="110" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td align="center">
+													<table width="110" bgcolor="#cccccc" cellpadding="1"
+														cellspacing="1" border="1">
+														<tbody>
+															<tr>
+																<td align="center" bgcolor="#ffffff"><ice:commandLink 
+																		actionListener="#{navigation.navigationPathChange}">
+																		<f:param name="includePath"
+																			value="/WEB-INF/includes/content/productDetail.xhtml" />
+																		<f:param name="productId" value="#{product.id}" />
+																		<img height="100" border="0" 
+																			src="#{product.imageLink}" />
+																	</ice:commandLink>
+																</td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td align="center" height="3"></td>
+											</tr>
+											<tr>
+												<td class="pro_name" align="center" height="25"><ice:commandLink 
+														actionListener="#{navigation.navigationPathChange}">
+														<f:param name="includePath"
+															value="/WEB-INF/includes/content/productDetail.xhtml" />
+														<f:param name="productId" value="#{product.id}" />
+														<h1><h:outputText value="#{product.name}" /></h1>
+													</ice:commandLink>
+												</td>
+											</tr>
+										</tbody>
+									</table></td>
+							</ui:repeat>
+
+						</tr>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+
+			</div>
+		</div>
+
+
+		<table class="div1">
+			<tbody>
+				<tr>
+					<td valign="top" align="left">
+						<table width="400" border="0" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td class="title">公司介绍<span class="more"><ice:commandLink 
+												actionListener="#{navigation.navigationPathChange}">
+												<f:param name="includePath"
+													value="/WEB-INF/includes/content/about.xhtml" />
+																		更多
+																	</ice:commandLink>
+									</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="ind_left">
+										<table width="100%" border="0" cellpadding="1" cellspacing="1">
+											<tbody>
+												<tr>
+													<td><img alt="" src="images/img1.jpg" />
+													</td>
+													<td valign="top">
+														温岭市卡唯尊汽车座垫厂是一家从事汽车用品生产和销售的企业。公司成立以来,以其规范的运作模式、完善的销售机制、高质量的服务体系，在广大客户中赢得盛誉。现已在全国各地建立庞大稳定的销售网络。并呈现不断扩展的趋势。<br />
+
+														“专业是基础，人才是根本”。卡唯尊拥有专业的设计团队、专业的技术技师、现代化的工厂设备，确保每一款产品创意新颖、品质优异，致力于塑造品牌形象，打造企业诚信。<br />
+
+														卡唯尊秉着“精益求精，追求卓越”的宗旨和“以人为本，客户至上”的理念，让您见证每一款产品的成功。<br /></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table></td>
+					<td valign="top" align="left">
+						<table width="290" border="0" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td class="title">新闻资讯<span class="more"><ice:commandLink 
+												actionListener="#{navigation.navigationPathChange}">
+												<f:param name="includePath"
+													value="/WEB-INF/includes/content/newsList.xhtml" />
+																		更多
+																	</ice:commandLink> </span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<!--  index newslist start -->
+										<ul id="ind_newslist">
+
+
+											<ui:repeat value="#{newsList.topNews}" var="news">
+												<li>
+													<div style="float: right;">
+														<h:outputText value="#{news.created}">
+															<f:convertDateTime pattern="yy-MM-dd" />
+														</h:outputText>
+													</div> <ice:commandLink
+														actionListener="#{navigation.navigationPathChange}">
+														<f:param name="includePath"
+															value="/WEB-INF/includes/content/newsDetail.xhtml" />
+														<f:param name="newsId" value="#{news.id}" />
+														<ice:outputText value="#{news.name}" />
+													</ice:commandLink>
+												</li>
+											</ui:repeat>
+
+										</ul> <!-- index newslist end -->
+									</td>
+								</tr>
+							</tbody>
+						</table></td>
+
+					<td
+						valign="top" align="left">
+						<table width="250" border="0" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td class="title">特价产品<span class="more"><ice:commandLink 
+												actionListener="#{navigation.navigationPathChange}">
+												<f:param name="includePath"
+													value="/WEB-INF/includes/content/productList.xhtml" />
+																		更多
+																	</ice:commandLink></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<table id="pro" width="100%" border="0" cellpadding="0"
+											cellspacing="0">
+											<tbody>
+
+												<ui:repeat value="#{productList.discountProducts}"
+													var="product">
+													<tr>
+														<td align="center">
+															<table width="110" border="0" cellpadding="0"
+																cellspacing="0">
+																<tbody>
+																	<tr>
+																		<td align="center">
+																			<table width="110" bgcolor="#cccccc" cellpadding="1"
+																				cellspacing="1" height="110 border=">
+																				<tbody>
+																					<tr>
+																						<td align="center" bgcolor="#ffffff"><ice:commandLink 
+																								actionListener="#{navigation.navigationPathChange}">
+																								<f:param name="includePath"
+																									value="/WEB-INF/includes/content/productDetail.xhtml" />
+																								<f:param name="productId" value="#{product.id}" />
+																								<img height="100" border="0" 
+																									src="#{product.imageLink}" />
+																							</ice:commandLink>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																	</tr>
+																	<tr>
+																		<td align="center" height="3"></td>
+																	</tr>
+																	<tr>
+																		<td class="pro_name" align="center" height="25"><ice:commandLink 
+																				actionListener="#{navigation.navigationPathChange}">
+																				<f:param name="includePath"
+																					value="/WEB-INF/includes/content/productDetail.xhtml" />
+																				<f:param name="productId" value="#{product.id}" />
+																				<h:outputText value="#{product.name}" />
+																			</ice:commandLink>
+																		</td>
+																	</tr>
+																</tbody>
+															</table></td>
+													</tr>
+													<tr>
+														<td colspan="2" height="1"></td>
+													</tr>
+												</ui:repeat>
+
+												<tr>
+													<h:outputText value="N/A"
+														rendered="#{productList.discountProducts.isEmpty()}" />
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</ice:form>
+</ice:panelGroup>

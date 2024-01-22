@@ -1,0 +1,81 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="componentBox">
+
+		<ice:panelGroup styleClass="exampleBox" scrollHeight="500px">
+			<ice:form>
+				<ice:tree id="tree" value="#{newsEdit.model}" var="node"
+					hideRootNode="false" hideNavigation="false">
+					<ice:treeNode>
+						<f:facet name="icon">
+							<ice:panelGroup style="display: inline">
+								<h:graphicImage
+									value="/xmlhttp/css/rime/css-images/#{node.userObject.icon}"></h:graphicImage>
+							</ice:panelGroup>
+						</f:facet>
+						<f:facet name="content">
+							<ice:panelGroup dropTarget="true"
+								dropMask="dragging,drag_cancel,hover_start,hover_end"
+								dropListener="#{newsEdit.dropListener}" dropValue="#{node}"
+								style="display: inline">
+
+								<ice:panelGroup dragOptions="dragGhost"
+									dragMask="dragging,drag_cancel,hover_start,hover_end"
+									draggable="true" hoverclass="cartDropTarget"
+									dragValue="#{node}"
+									styleClass="selectedNode#{node.userObject eq newsEdit.selected}"
+									style="display: inline">
+									<ice:commandLink
+										action="#{newsEdit.nodeSelected(node.userObject.data.id)}">
+										<ice:outputText value="#{node.userObject.data.name}" />
+									</ice:commandLink>
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</f:facet>
+					</ice:treeNode>
+				</ice:tree>
+			</ice:form>
+			<br />
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="exampleBox">
+			<ice:form>
+				<ice:commandButton value="新建"
+					actionListener="#{newsEdit.newNews}" rendered="#{loginBean.hasRole('ROLE_ADMIN')}">
+				</ice:commandButton>
+				<ice:commandButton value="删除"
+					actionListener="#{newsEdit.nodeDelete}" rendered="#{(newsEdit.selected!=null) and (newsEdit.selected.data!=null) and loginBean.hasRole('ROLE_ADMIN')}">
+				</ice:commandButton>
+
+			</ice:form>
+			<ice:form>
+				<ice:panelGroup styleClass="exampleBox"
+					rendered="#{(newsEdit.selected!=null) and (newsEdit.selected.data!=null)}">
+					<ice:panelGrid columns="3" styleClass="verticalAlignTop">
+
+						<h:outputLabel for="newsTitle" value="标题：" />
+						<h:inputText id="newsTitle" style="width:320px;"
+							value="#{newsEdit.selected.data.name}" />
+						<h:message for="newsTitle" />
+
+						<h:outputLabel for="content" value="内容: "
+							style="line-height:200%" />
+						<h:inputTextarea id="content" cols="20" rows="4"
+							style="width:320px;height:300px;overflow: auto;"
+							value="#{newsEdit.selected.data.content}" />
+						<h:message for="content" />
+					</ice:panelGrid>
+					<ice:commandButton value="保存"
+						actionListener="#{newsEdit.nodeSave}">
+						<f:ajax render="tree details" />
+					</ice:commandButton>
+				</ice:panelGroup>
+			</ice:form>
+		</ice:panelGroup>
+
+	</ice:panelGroup>
+</ice:panelGroup>

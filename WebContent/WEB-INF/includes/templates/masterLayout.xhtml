@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>卡唯尊汽车用品有限公司</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="卡唯尊汽车用品有限公司是中国著名主营汽车用品生产和销售的企业。公司从事汽车坐垫，汽车座垫，汽车坐垫生产批发. 卡唯尊是全国驰名汽车座垫品牌,备受消费者推荐品牌" />
+	<meta name="keywords" content="卡唯尊汽车用品有限公司,卡唯尊汽车座垫,卡唯尊汽车 " />
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link href="css/xp.css" type="text/css" rel="stylesheet" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+
+</h:head>
+
+<h:body>
+
+	<div class="wrapper">
+		<!-- header start -->
+		<div id="header">
+			<div class="H_top">
+				<a href="http://www.kawzun.com/"
+					onclick="this.style.behavior='url(#default#homepage)';this.setHomePage(this.href);return(false);">设为首页</a>&nbsp;|&nbsp;
+				<a
+					href="javascript:window.external.addFavorite('http://www.kawzun.com','%E6%94%B6%E8%97%8F%E6%88%91%E4%BB%AC')">加为收藏</a>&nbsp;&nbsp;
+			</div>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td id="logo" valign="top" align="left"><a href="index.jsp">
+								<img
+								alt="" src="images/logo.jpg" border="0" /> </a>
+						</td>
+						<td class="phone" valign="bottom" align="right">
+							<table width="100%" border="0" cellpadding="1" cellspacing="1">
+								<tbody>
+									<tr>
+										<td align="right"><img src="images/phone_ico.gif" alt="" />&nbsp;&nbsp;</td>
+										<td width="36%">
+											<p>
+												<strong>咨询电话</strong>：<em>186 586 777 37</em>
+											</p></td>
+									</tr>
+									<tr>
+										<td />
+										<td valign="bottom" align="right" class="welcome"><marquee
+												direction='right'><h1>欢迎光临卡唯尊<h:outputText
+												style="font-style: bold" value=", #{loginBean.userName}"
+												rendered="#{loginBean.loggedIn}"></h:outputText>!</h1></marquee></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>&nbsp;</p></td>
+					</tr>
+
+				</tbody>
+			</table>
+			<ui:insert name="navigation">
+			</ui:insert>
+			<ice:panelGroup id="banner" rendered="#{navigation.home}">
+			</ice:panelGroup>
+			<!-- nav end -->
+		</div>
+		<!-- header end -->
+		<!-- main start -->
+		<ui:insert name="main">
+		</ui:insert>
+		<div id="footer">
+			版权所有 澳大利亚悉尼Impressive IT有限公司 地址：Bexley, NSW 邮编：2207 Email:<a
+				href="mailto:impressiveit.com@gmail.com">impressiveit.com@gmail.com</a>
+
+			<div id="floatDivr"
+				style="position: absolute; left: 1240px; top: 108px;">
+
+				<table width="109" border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td
+								style="background: url(&quot;images/kf-bg.gif&quot;) no-repeat scroll left top transparent;">
+								<a href="#" id="closeQQ"><img src="images/qq_top.gif"
+									usemap="#Map" width="109" border="0" height="34" /> </a>
+							</td>
+						</tr>
+						<tr>
+							<td
+								style="background: url(&quot;images/kf-bg.gif&quot;) no-repeat scroll 0% 20% rgb(255, 255, 255);"
+								align="center"><a target="blank"
+								href="tencent://message/?uin=565708068&amp;Site=kawzun.com&amp;Menu=yes">
+									<img alt="QQ" src="images/pa.gif" border="0" /> </a><br /> <a
+								target="blank"
+								href="tencent://message/?uin=565708068&amp;Site=kawzun.com&amp;Menu=yes">
+									<img alt="QQ" src="images/pa1.gif" border="0" /> </a><br /> <a
+								target="blank"
+								href="tencent://message/?uin=565708068&amp;Site=kawzun.com&amp;Menu=yes">
+									<img alt="QQ" src="images/pa2.gif" border="0" /> </a><br />
+									 <a target="blank"
+								href="tencent://message/?uin=565708068&amp;Site=kawzun.com&amp;Menu=yes">
+									<img
+									src="images/msn.gif" alt="业务员2" border="0" />业务咨询</a><br /> 
+									<a target="blank"
+								href="tencent://message/?uin=565708068&amp;Site=kawzun.com&amp;Menu=yes">
+									<img src="images/online.gif" alt="公司淘宝" border="0" /> </a>
+							</td>
+						</tr>
+						<tr>
+							<td
+								style="background: url(&quot;images/kf-bg.gif&quot;) no-repeat scroll left bottom transparent;"
+								height="25">&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-1.4.2.js" />
+	<script type="text/javascript" src="js/jquery.floatobject-1.4.js" />
+	<script type="text/javascript" src="js/jquery.swfobject.1-1-1.min.js" />
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							xmlData = "&lt;list&gt;&lt;item&gt;&lt;img&gt;images/banner03.JPG&lt;/img&gt;&lt;url&gt;&lt;/url&gt;&lt;/item&gt;&lt;item&gt;&lt;img&gt;images/banner04.JPG&lt;/img&gt;&lt;url&gt;&lt;/url&gt;&lt;/item&gt;&lt;/list&gt;";
+							jQuery('#banner').flash({
+								swf : 'images/swfupload/zz.swf',
+								height : 220,
+								width : 960,
+								play : true,
+								// these arguments will be passed into the flash document
+								flashvars : {
+									xmlData : xmlData
+								}
+							});
+							$("a#closeQQ").click(function() {
+								$("#floatDivr").hide();
+							});
+
+							$("#floatDivr").makeFloat({
+								x : "current",
+								y : "current"
+							});
+							$('html, body').animate({
+								scrollTop : 1
+							}).animate({
+								scrollTop : 0
+							});
+
+						});
+	</script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push([ '_setAccount', 'UA-24007536-1' ]);
+		_gaq.push([ '_trackPageview' ]);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+					: 'http://www')
+					+ '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</h:body>
+</html>

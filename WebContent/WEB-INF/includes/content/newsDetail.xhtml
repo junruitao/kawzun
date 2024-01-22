@@ -1,0 +1,80 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<f:metadata>
+		<f:viewParam name="newsId" value="#{newsList.newsId}">
+		</f:viewParam>
+	</f:metadata>
+	<ice:form>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top">
+						<div class="box1">
+							<h4>新闻中心</h4>
+							<div>
+								<ul id="sidebar">
+
+									<li><ice:commandLink  
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/content/newsList.xhtml" />
+										公司新闻
+									</ice:commandLink></li>
+								</ul>
+
+							</div>
+						</div> <ui:include src="contactUsBox.xhtml" /></td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/newsList.xhtml" />
+										新闻中心
+									</ice:commandLink>
+						</div>
+						<div class="main_content">
+							<!-- start news-->
+							<div id="show_news">
+								<h3 class="news_title">#{newsList.currentNews.name}</h3>
+								<div class="time">
+									<h:outputText value="#{newsList.currentNews.created}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+									</h:outputText>
+									点击：#{newsList.currentNews.hits}
+									来自:#{newsList.currentNews.author}
+								</div>
+								<div class="news_content">
+									<h:outputText value="#{newsList.currentNews.contentInHtml}"
+										escape="false" />
+								</div>
+								<p class="previous">
+
+									上一篇：
+									<ice:commandLink 
+										action="#{newsList.setNewsId(newsList.previous.id)}" rendered="#{newsList.previous!=null}">#{newsList.previous.name}</ice:commandLink>
+								</p>
+								<p class="next">
+
+									下一篇：
+									<ice:commandLink 
+										action="#{newsList.setNewsId(newsList.next.id)}" rendered="#{newsList.next!=null}">#{newsList.next.name}</ice:commandLink>
+								</p>
+							</div>
+							<!-- end news-->
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

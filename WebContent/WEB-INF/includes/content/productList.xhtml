@@ -1,0 +1,92 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+
+		<f:metadata>
+			<f:viewParam name="catalogId" value="#{productList.catalogId}" />
+		</f:metadata>
+
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top"><ui:include
+							src="productNav.xhtml" /> <ui:include src="contactUsBox.xhtml" />
+					</td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»<a href=".">产品展示</a>
+						</div>
+						<div class="main_content">
+							<ice:repeat value="#{productList.currentCatalog.products}"
+								var="product" rendered="#{productList.currentCatalog!=null}">
+								<table cellspacing="0" cellpadding="0" border="0" width="360"
+									style="float: left">
+									<tbody>
+										<tr>
+											<td align="left" width="118" valign="top">
+												<table cellspacing="1" cellpadding="1" border="0"
+													bgcolor="#d8d8d8" width="118">
+													<tbody>
+														<tr>
+															<td height="110" bgcolor="#eaeaea" align="center"
+																valign="middle"><ice:commandLink
+																	actionListener="#{navigation.navigationPathChange}">
+																	<f:param name="includePath"
+																		value="/WEB-INF/includes/content/productDetail.xhtml" />
+																	<f:param name="productId" value="#{product.id}" />
+																	<img height="100" border="0"
+																		src="#{product.imageLink}" />
+																</ice:commandLink>
+															</td>
+														</tr>
+													</tbody>
+												</table></td>
+											<td width="6"></td>
+											<td align="left" width="236" valign="top">
+												<table cellspacing="0" cellpadding="0" border="0"
+													width="236">
+													<tbody>
+														<tr>
+															<td align="left" valign="top" id="plistname"><ice:commandLink
+																	
+																	actionListener="#{navigation.navigationPathChange}">
+																	<f:param name="includePath"
+																		value="/WEB-INF/includes/content/productDetail.xhtml" />
+																	<f:param name="productId" value="#{product.id}" />
+																	<h:outputText value="#{product.name}" />
+																</ice:commandLink></td>
+														</tr>
+														<tr>
+															<td height="2"></td>
+														</tr>
+														<tr>
+															<td height="60px"><h:outputText
+																	value="#{product.partialShortDescriptionInHtml}"
+																	escape="false" />
+															</td>
+														</tr>
+													</tbody>
+												</table></td>
+										</tr>
+										<tr>
+											<td height="2"></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</ice:repeat>
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

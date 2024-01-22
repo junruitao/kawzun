@@ -1,0 +1,84 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top">
+						<div class="box1">
+							<h4>新闻中心</h4>
+							<div>
+								<ul id="sidebar">
+
+									<li><a href="."> 公司动态 </a>
+									</li>
+								</ul>
+
+							</div>
+						</div> <ui:include src="contactUsBox.xhtml" />
+					</td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»
+							<a href=".">
+										新闻中心
+									</a>
+						</div>
+						<div class="main_content">
+							<!-- start news-->
+							<ul id="newslist">
+
+								<ui:repeat value="#{newsList.filteredNewsByPage}" var="news">
+
+									<li><span class="news_content"> <ice:commandLink 
+												actionListener="#{navigation.navigationPathChange}">
+												<f:param name="includePath"
+													value="/WEB-INF/includes/content/newsDetail.xhtml" />
+												<f:param name="newsId" value="#{news.id}" />
+												<ice:outputText value="#{news.name}" />
+											</ice:commandLink> </span> <span class="news_time"> <h:outputText
+												value="#{news.created}">
+												<f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+											</h:outputText> </span>
+									</li>
+								</ui:repeat>
+
+
+							</ul>
+							<div class="page_number">
+								<table border="0" align="right">
+									<tbody>
+										<tr>
+											<td align="right">
+												<p align="right">
+													共有#{newsList.allNews.size()}条 共：#{newsList.totalPages}页
+													每页10篇 当前第#{newsList.page+1}页
+													<ice:commandLink  action="#{newsList.setPage(0)}">首页</ice:commandLink>
+													<ice:commandLink
+														action="#{newsList.setPage(newsList.prevPage)}" rendered="#{newsList.hasPrevPage()}">上一页</ice:commandLink>
+													<ice:commandLink 
+														action="#{newsList.setPage(newsList.nextPage)}" rendered="#{newsList.hasNextPage()}">下一页</ice:commandLink>
+													<ice:commandLink  action="#{newsList.setPage(99999)}">尾页</ice:commandLink>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+							<!-- end news-->
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

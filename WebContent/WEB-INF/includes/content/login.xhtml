@@ -1,0 +1,53 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tbody>
+			<tr>
+				<td align="left" width="210" valign="top">
+					<div class="box1">
+						<h4>登录</h4>
+						<div>
+
+							<ul id="sidebar">
+
+
+								<li class="list"><a href="#" >用户登录</a></li>
+
+
+							</ul>
+						</div>
+						<div>
+							<ui:include src="contactUsBox.xhtml" />
+						</div>
+					</div>
+				</td>
+				<td align="left" valign="top">
+					<div class="location">
+						<a href="index.jsp" > <span>首页</span> </a> »登录
+					</div>
+					<div class="main_content" align="center" style="padding-left: 220px;padding-right: 220px;">
+						<ice:form>
+							<h:messages />
+							<ice:panelGrid id="loginDiv" columns="3" styleClass="verticalAlignTop">
+								<ice:outputLabel for="login"
+									value="#{msgs['loginscreen.loginfield']} " />
+								<ice:inputText id="login" value="#{loginBean.login}" />
+								<h:message for="login" />
+
+								<ice:outputLabel for="password"
+									value="#{msgs['loginscreen.passfield']} " />
+								<ice:inputSecret id="password" value="#{loginBean.password}" />
+								<h:message for="password" />
+
+							</ice:panelGrid>
+							<ice:commandButton action="#{loginBean.login}" value="登录" />
+						</ice:form>
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+
+</ice:panelGroup>

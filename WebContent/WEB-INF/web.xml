@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
+	version="2.5">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring/application-context.xml,
+			/WEB-INF/spring/spring-security.xml
+    </param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.icesoft.faces.connectionLostRedirectURI</param-name>
+		<param-value>'home.kwz'</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.icesoft.faces.sessionExpiredRedirectURI</param-name>
+		<param-value>'home.kwz'</param-value>
+	</context-param>
+    <context-param>
+        <param-name>org.icefaces.connectionLostRedirectURI</param-name>
+		<param-value>'home.kwz'</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.icefaces.sessionExpiredRedirectURI</param-name>
+		<param-value>'home.kwz'</param-value>
+    </context-param>	
+	<context-param>
+		<description>
+			To allow multiple windows for a single application.
+			See Concurrent DOM Views in Chapter 3. of Developer Guide.</description>
+		<param-name>com.icesoft.faces.concurrentDOMViews</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<description>Turn on/off application-wide synchronous or asynchronous
+			updates.
+			See Synchronous and Asynchronous Updates in
+			Chapter 3. of Developer Guide.</description>
+		<param-name>com.icesoft.faces.synchronousUpdate</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping> 
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
+	<!-- <listener> <listener-class> org.springframework.web.context.ContextLoaderListener 
+		</listener-class> </listener> -->
+	<context-param>
+		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.expressionFactory</param-name>
+		<param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.kwz</url-pattern>
+		<url-pattern>*.iface</url-pattern>
+		<url-pattern>/icefaces/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Resource Servlet</servlet-name>
+		<servlet-class>com.icesoft.faces.webapp.CompatResourceServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Resource Servlet</servlet-name>
+		<url-pattern>/xmlhttp/*</url-pattern>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- Prevent direct access to Facelet view XHTML by the userAgent (browser). -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Facelet View XHTML</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>nobody</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>nobody</role-name>
+	</security-role>
+
+</web-app>

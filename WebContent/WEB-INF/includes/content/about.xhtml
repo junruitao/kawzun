@@ -1,0 +1,46 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tbody>
+			<tr>
+				<td align="left" width="210" valign="top">
+					<div class="box1">
+						<h4>关于我们</h4>
+						<div>
+							<ul id="sidebar">
+								<li><a href="."  >公司简介</a>
+								</li>
+							</ul>
+						</div>
+					</div> <ui:include src="contactUsBox.xhtml" /></td>
+				<td align="left" valign="top">
+					<div class="location">
+						<ice:form>
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+						»关于我们
+						</ice:form>
+					</div>
+					<div class="main_content">
+						<br />
+						温岭市卡唯尊汽车座垫厂是一家从事汽车用品生产和销售的企业。公司成立以来,以其规范的运作模式、完善的销售机制、高质量的服务体系，在广大客户中赢得盛誉。现已在全国各地建立庞大稳定的销售网络。并呈现不断扩展的趋势。<br />
+
+						“专业是基础，人才是根本”。卡唯尊拥有专业的设计团队、专业的技术技师、现代化的工厂设备，确保每一款产品创意新颖、品质优异，致力于塑造品牌形象，打造企业诚信。<br />
+
+						卡唯尊秉着“精益求精，追求卓越”的宗旨和“以人为本，客户至上”的理念，让您见证每一款产品的成功。<br />
+
+						今天卡唯尊员工奉行“进取 求实 严谨
+						团结”的方针，不断开拓创新，以技术为核心、视质量为生命、奉用户为上帝，竭诚为您提供性价比最高的自控产品、高质量的工程设计改造及无微不至的售后服务。
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+
+</ice:panelGroup>

@@ -1,0 +1,44 @@
+<ice:panelGroup styleClass="mian" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top">
+						<div class="box1">
+							<h4>销售网络</h4>
+							<div>
+
+
+								<ul id="sidebar">
+
+									<li><a href=".">前景1</a>
+									</li>
+
+									<li><a href=".">前景2</a>
+									</li>
+
+
+
+								</ul>
+							</div>
+						</div> <ui:include src="contactUsBox.xhtml" /></td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»销售网络
+						</div>
+						<div class="main_content">前景1前景1前景1前景1前景1前景1</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

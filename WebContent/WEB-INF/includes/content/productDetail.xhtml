@@ -1,0 +1,151 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<f:metadata>
+		<f:viewParam name="productId" value="#{productList.productId}" />
+	</f:metadata>
+	<ice:form>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody>
+				<tr>
+					<td align="left" width="210" valign="top"><ui:include
+							src="productNav.xhtml" /> <ui:include src="contactUsBox.xhtml" />
+
+
+					</td>
+					<td align="left" valign="top">
+						<div class="location">
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/index.xhtml" />
+										首页
+									</ice:commandLink>
+							»
+							<ice:commandLink 
+								actionListener="#{navigation.navigationPathChange}">
+								<f:param name="includePath"
+									value="/WEB-INF/includes/content/productList.xhtml" />
+								<span>产品展示</span>
+							</ice:commandLink>
+							»#{productList.currentCatalog.name}»#{productList.currentProduct.name}»
+						</div>
+						<div class="main_content">
+							<table cellspacing="0" cellpadding="0" border="0" width="100%"
+								style="border-collapse: collapse;">
+								<tbody>
+									<tr>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+									<tr>
+										<td valign="top">
+
+
+											<table cellspacing="2" cellpadding="8" border="0"
+												align="center" width="100%">
+												<tbody>
+													<tr>
+														<td align="center" valign="middle" class="pdetailbg">
+															<img border="0" width="300"
+															src="#{productList.currentProduct.imageLink}" /></td>
+														<td align="left" valign="top" style="padding-left: 20px;">
+															<table cellspacing="0" cellpadding="0" border="0"
+																width="100%">
+																<tbody>
+																	<tr>
+																		<td align="left" valign="middle"
+																			class="prophotolist_main2">#{productList.currentProduct.name}</td>
+																	</tr>
+																	<tr>
+																		<td height="20"></td>
+																	</tr>
+
+																	<tr>
+																		<td align="left" valign="top"
+																			style="color: rgb(102, 102, 102); padding-left: 10px;"><strong>产品简介:</strong>
+																			<h:outputText
+																				value="#{productList.currentProduct.shortDescriptionInHtml}"
+																				escape="false" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="30"></td>
+																	</tr>
+																</tbody>
+															</table></td>
+													</tr>
+												</tbody>
+											</table> <br />
+											<table cellspacing="0" cellpadding="0" border="0"
+												width="100%">
+												<tbody>
+													<tr>
+														<td align="left" valign="top">
+															<table cellspacing="0" cellpadding="0" border="0"
+																width="100%">
+																<tbody>
+																	<tr>
+																		<td align="left" valign="middle" class="rrbg">产品详细:</td>
+																	</tr>
+
+
+																	<tr>
+																		<td height="15"></td>
+																	</tr>
+																	<tr>
+																		<td align="left" valign="top"
+																			style="color: rgb(102, 102, 102); padding: 0px 22px;"><h:outputText
+																				value="#{productList.currentProduct.longDescriptionInHtml}"
+																				escape="false" /></td>
+																	</tr>
+																</tbody>
+															</table></td>
+													</tr>
+												</tbody>
+											</table> <!--next items -->
+											<table cellspacing="0" cellpadding="0" border="0"
+												width="100%">
+												<tbody>
+													<tr>
+														<td align="left" valign="top">
+
+
+															<p style="margin-top: 3px; margin-bottom: 3px;">
+																上一个：
+																<ice:commandLink 
+																	action="#{productList.setProductId(productList.previousProduct.id)}"
+																	rendered="#{productList.previousProduct!=null}">#{productList.previousProduct.name}</ice:commandLink>
+																<br />
+
+															</p>
+															<p style="margin-top: 3px; margin-bottom: 3px;">
+																下一个：
+																<ice:commandLink 
+																	action="#{productList.setProductId(productList.nextProduct.id)}"
+																	rendered="#{productList.nextProduct!=null}">#{productList.nextProduct.name}</ice:commandLink>
+
+
+															</p>
+														</td>
+													</tr>
+
+												</tbody>
+											</table></td>
+									</tr>
+								</tbody>
+							</table>
+
+
+
+
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ice:form>
+</ice:panelGroup>

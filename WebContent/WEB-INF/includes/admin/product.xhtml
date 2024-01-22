@@ -1,0 +1,133 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="componentBox">
+
+		<ice:panelGroup styleClass="exampleBox" scrollHeight="500px"
+			style="width:350px;">
+			<ice:form>
+				<ice:tree id="tree" value="#{productEdit.model}" var="node"
+					hideRootNode="false" hideNavigation="false">
+					<ice:treeNode>
+						<f:facet name="icon">
+							<ice:panelGroup style="display: inline">
+								<h:graphicImage
+									value="/xmlhttp/css/rime/css-images/#{node.userObject.icon}"></h:graphicImage>
+							</ice:panelGroup>
+						</f:facet>
+						<f:facet name="content">
+							<ice:panelGroup dropTarget="true"
+								dropMask="dragging,drag_cancel,hover_start,hover_end"
+								dropListener="#{productEdit.dropListener}" dropValue="#{node}"
+								style="display: inline">
+
+								<ice:panelGroup dragOptions="dragGhost"
+									dragMask="dragging,drag_cancel,hover_start,hover_end"
+									draggable="true" hoverclass="cartDropTarget"
+									dragValue="#{node}"
+									styleClass="selectedNode#{node.userObject eq productEdit.selected}"
+									style="display: inline">
+									<ice:commandLink 
+										action="#{productEdit.nodeSelected(node.userObject.data.id,node.userObject.data.class.simpleName)}">
+										<ice:outputText value="#{node.userObject.data.name}" />
+									</ice:commandLink>
+
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</f:facet>
+					</ice:treeNode>
+				</ice:tree>
+			</ice:form>
+			<br />
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="exampleBox">
+			<ice:form>
+				<ice:commandButton value="新建目录"
+					actionListener="#{productEdit.newCatalog}"
+					rendered="#{loginBean.hasRole('ROLE_ADMIN')}">
+					<f:ajax render="tree details" />
+				</ice:commandButton>
+				<ice:commandButton value="新建产品"
+					actionListener="#{productEdit.newProduct}"
+					rendered="#{(productEdit.selected!=null) and (productEdit.selected.data!=null) and loginBean.hasRole('ROLE_ADMIN')}">
+					<f:ajax render="tree details" />
+				</ice:commandButton>
+				<ice:commandButton value="删除"
+					actionListener="#{productEdit.nodeDelete}">
+					<f:ajax render="tree details" />
+				</ice:commandButton>
+			</ice:form>
+			<ice:panelGroup styleClass="exampleBox"
+				rendered="#{productEdit.selected!=null}">
+				<ice:form>
+					<ice:panelGroup id="catalogDetails"
+						rendered="#{productEdit.selected.data.class.simpleName=='Catalog'}">
+						<ice:panelGrid columns="3">
+							<h:outputLabel for="catName" value="名称:" />
+							<h:inputText id="catName"
+								value="#{productEdit.selected.data.name}" style="width:320px;" />
+							<h:message for="catName" />
+						</ice:panelGrid>
+					</ice:panelGroup>
+					<ice:panelGroup id="productDetails"
+						rendered="#{productEdit.selected.data.class.simpleName=='Product'}">
+						<ice:panelGrid columns="3" styleClass="verticalAlignTop">
+
+							<h:outputLabel for="prdName" value="名称:"/>
+							<h:inputText id="prdName" style="width:320px;"
+								value="#{productEdit.selected.data.name}" />
+							<h:message for="prdName" style="width:120px;"/>
+
+							<h:outputLabel for="imageLink" value="图片（链接）:"/>
+							<ice:panelGroup id="image">
+								<ice:inputText id="imageLink" style="width:320px;"
+									value="#{productEdit.selected.data.imageLink}"
+									partialsubmit="true" />
+								<h:graphicImage border="2" width="300" style="float:left;"
+									value="#{productEdit.selected.data.imageLink}"></h:graphicImage>
+							</ice:panelGroup>
+							<h:message for="imageLink" />
+
+							<h:outputLabel for="shortDescription" value="产品简介:" />
+							<h:inputTextarea id="shortDescription" cols="20" rows="4"
+								style="width:320px;height:80px;overflow: auto;"
+								value="#{productEdit.selected.data.shortDescription}" />
+							<h:message for="shortDescription" />
+
+							<h:outputLabel for="longDescription" value="产品详细:"
+								style="line-height:200%" />
+							<h:inputTextarea id="longDescription" cols="20" rows="4"
+								style="width:320px;height:120px;overflow: auto;"
+								value="#{productEdit.selected.data.longDescription}" />
+							<h:message for="longDescription" />
+
+							<h:outputLabel for="popular" value="推荐产品:"
+								style="line-height:200%" />
+							<h:selectBooleanCheckbox id="popular" title="popular"
+								value="#{productEdit.selected.data.popular}">
+							</h:selectBooleanCheckbox>
+							<h:message for="popular" />
+
+							<h:outputLabel for="discount" value="特价产品:"
+								style="line-height:200%" />
+							<h:selectBooleanCheckbox id="discount" title="discount"
+								value="#{productEdit.selected.data.discount}">
+							</h:selectBooleanCheckbox>
+							<h:message for="discount" />
+
+						</ice:panelGrid>
+
+					</ice:panelGroup>
+					<ice:commandButton value="保存"
+						actionListener="#{productEdit.nodeSave}">
+						<f:ajax render="tree details" />
+					</ice:commandButton>
+				</ice:form>
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</ice:panelGroup>
+</ice:panelGroup>

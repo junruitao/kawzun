@@ -1,0 +1,100 @@
+<ice:form xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	id="navigationMenuForm">
+	<!-- nav start -->
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td>
+					<div id="menu">
+						<div class="nav">
+							<ul>
+								<li id="about_nav"><ice:commandLink title="首页"
+										actionListener="#{navigation.navigationPathChange}"> 
+										<f:param name="includePath"
+											value="/WEB-INF/includes/content/index.xhtml" />
+										<span>首页</span>
+									</ice:commandLink></li>
+								<li id="about_nav"><ice:commandLink title="关于我们"
+										actionListener="#{navigation.navigationPathChange}">
+										<f:param name="includePath"
+											value="/WEB-INF/includes/content/about.xhtml" />
+										<span>关于我们</span>
+									</ice:commandLink></li>
+								<li id="news_nav"><ice:commandLink title="公司新闻"
+										action="#{navigation.setSelectedIncludePath('/WEB-INF/includes/content/newsList.xhtml')}" >
+										<span>公司新闻</span>
+									</ice:commandLink></li>
+								<li id="products_nav"><ice:commandLink title="产品展示"
+										actionListener="#{navigation.navigationPathChange}">
+										<f:param name="includePath"
+											value="/WEB-INF/includes/content/productList.xhtml" />
+										<span>产品展示</span>
+									</ice:commandLink></li>
+								<li id="service_nav"><ice:commandLink title="售后服务"
+										actionListener="#{navigation.navigationPathChange}">
+										<f:param name="includePath"
+											value="/WEB-INF/includes/content/service.xhtml" />
+										<span>售后服务</span>
+									</ice:commandLink></li>
+								<li id="sales_nav"><ice:commandLink title="销售网络"
+										actionListener="#{navigation.navigationPathChange}">
+										<f:param name="includePath"
+											value="/WEB-INF/includes/content/sales.xhtml" />
+										<span>销售网络</span>
+									</ice:commandLink></li>
+								<c:if test="${!loginBean.loggedIn}">
+									<li id="contact_nav"><ice:commandLink title="联系我们"
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/content/contact.xhtml" />
+											<span>联系我们</span>
+										</ice:commandLink></li>
+								</c:if>
+								<c:if test="${!loginBean.loggedIn}">
+									<li id="liuyan_nav"><ice:commandLink title="在线留言"
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/content/message.xhtml" />
+											<span>在线留言</span>
+										</ice:commandLink></li>
+								</c:if>
+								<c:if test="${loginBean.hasRole('ROLE_ADMIN')}">
+									<li><ice:commandLink 
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/admin/news.xhtml" />
+											<span>新闻管理</span>
+										</ice:commandLink></li>
+								</c:if>
+								<c:if test="${loginBean.hasRole('ROLE_ADMIN')}">
+									<li id="productAdmin_nav"><ice:commandLink 
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/admin/product.xhtml" />
+											<span>产品管理</span>
+										</ice:commandLink></li>
+								</c:if>
+								<c:if test="${loginBean.loggedIn}">
+									<li id="productAdmin_nav"><ice:commandLink 
+											actionListener="#{navigation.navigationPathChange}">
+											<f:param name="includePath"
+												value="/WEB-INF/includes/admin/user.xhtml" />
+											<span>用户管理</span>
+										</ice:commandLink></li>
+								</c:if>
+								<c:if test="${loginBean.loggedIn}">
+									<li id="logout"><a href="logout.jsp" > <span>退出!</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</ice:form>

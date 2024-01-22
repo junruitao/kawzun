@@ -1,0 +1,92 @@
+<ice:panelGroup styleClass="main" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="componentBox">
+
+		<ice:panelGroup styleClass="exampleBox" scrollHeight="500px">
+			<ice:form id="form1">
+				<ice:tree id="tree" value="#{userEdit.model}" var="node"
+					hideRootNode="false" hideNavigation="false">
+					<ice:treeNode>
+						<f:facet name="icon">
+							<ice:panelGroup style="display: inline">
+								<h:graphicImage
+									value="/xmlhttp/css/rime/css-images/#{node.userObject.icon}"></h:graphicImage>
+							</ice:panelGroup>
+						</f:facet>
+						<f:facet name="content">
+							<ice:panelGroup
+								styleClass="selectedNode#{node.userObject eq userEdit.selected}"
+								style="display: inline">
+								<ice:commandLink id="command1"
+									action="#{userEdit.nodeSelected(node.userObject.data.id)}">
+									<ice:outputText value="#{node.userObject.data.name}" />
+								</ice:commandLink>
+							</ice:panelGroup>
+						</f:facet>
+					</ice:treeNode>
+				</ice:tree>
+			</ice:form>
+		</ice:panelGroup>
+
+
+		<ice:panelGroup styleClass="exampleBox" id="detailBox">
+			<ice:form id="form2">
+				<ice:commandButton value="新用户"
+					actionListener="#{userEdit.newUser}"
+					rendered="#{loginBean.hasRole('ROLE_USER_ADMIN')}">
+				</ice:commandButton>
+				<ice:commandButton value="删除"
+					actionListener="#{userEdit.nodeDelete}"
+					rendered="#{(userEdit.selected!=null) and (loginBean.hasRole('ROLE_USER_ADMIN'))}">
+				</ice:commandButton>
+			</ice:form>
+			<ice:form id="form3">
+				<ice:panelGroup styleClass="exampleBox" ID="details"
+					rendered="#{userEdit.selected!=null}">
+					<ice:panelGrid columns="3" styleClass="verticalAlignTop">
+
+						<h:outputLabel for="userTitle" value="用户登录ID：" />
+						<h:inputText id="userTitle" style="width:320px;"
+							value="#{userEdit.selected.data.name}" />
+						<h:message for="userTitle" />
+
+						<h:outputLabel for="email" value="邮箱：" />
+						<h:inputText id="email" style="width:320px;"
+							value="#{userEdit.selected.data.email}" />
+						<h:message for="email" />
+
+						<h:outputLabel for="inputPassword" value="新密码："
+							style="line-height:200%" />
+						<h:inputSecret id="inputPassword"
+							value="#{userEdit.inputPassword}" />
+						<h:message for="inputPassword" />
+
+						<h:outputLabel for="inputPassword2" value="重输新密码："
+							style="line-height:200%" />
+						<h:inputSecret id="inputPassword2"
+							value="#{userEdit.inputPassword2}" />
+						<h:message for="inputPassword2" />
+
+						<c:if test="${loginBean.hasRole('ROLE_USER_ADMIN')}">
+							<h:outputLabel for="roles" value="Roles" style="line-height:200%" />
+							<ice:selectManyCheckbox id="roles"
+								value="#{userEdit.selected.data.allRoles}">
+								<f:selectItems value="#{userEdit.selected.data.allRoleItems}" />
+							</ice:selectManyCheckbox>
+							<h:message for="roles" />
+						</c:if>
+
+					</ice:panelGrid>
+					<ice:commandButton value="保存"
+						actionListener="#{userEdit.nodeSave}">
+					</ice:commandButton>
+				</ice:panelGroup>
+			</ice:form>
+		</ice:panelGroup>
+	</ice:panelGroup>
+</ice:panelGroup>
